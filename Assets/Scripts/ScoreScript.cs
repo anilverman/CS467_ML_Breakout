@@ -5,12 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class ScoreScript : MonoBehaviour
 {
-    public UIDocument uiDocument;
+    private UIDocument uiDocument;
     private Label scoreText;
     private float score = 0f;
 
     void Start()
     {
+        uiDocument = GetComponent<UIDocument>();
         scoreText = uiDocument.rootVisualElement.Q<Label>("Score");
     }
 
