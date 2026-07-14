@@ -2,11 +2,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-public class MainMenuScript : MonoBehaviour
+public class ModeScript : MonoBehaviour
 {
     private UIDocument uiDocument;
     private Button startButton;
-    private Button quitButton;
+    private Button backButton;
     void OnEnable()
     {
         Buttons();
@@ -14,20 +14,20 @@ public class MainMenuScript : MonoBehaviour
     void Buttons()
     {
         uiDocument = GetComponent<UIDocument>();
-        startButton = uiDocument.rootVisualElement.Q<Button>("Start");
-        quitButton = uiDocument.rootVisualElement.Q<Button>("Quit");
+        startButton = uiDocument.rootVisualElement.Q<Button>("1Player");
+        backButton = uiDocument.rootVisualElement.Q<Button>("Back");
 
         startButton.clicked += StartGame;
-        quitButton.clicked += QuitGame;
+        backButton.clicked += Back;
 
     }
 
     void StartGame()
     {
-        SceneManager.LoadScene("Mode");
+        SceneManager.LoadScene("Game");
     }
-    void QuitGame()
+    void Back()
     {
-        Application.Quit();
+        SceneManager.LoadScene("MainMenu");
     }
 }

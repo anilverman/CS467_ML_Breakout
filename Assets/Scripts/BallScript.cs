@@ -13,18 +13,18 @@ public class BallScript : MonoBehaviour
     public float spawnY = 0f;
 
     private Rigidbody2D rb;
+    private ScoreScript scoreScript;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        scoreScript = FindFirstObjectByType<ScoreScript>();
         // Random spawn position
         float randomX = Random.Range(minSpawnX, maxSpawnX);
         rb.position = new Vector2(randomX, spawnY);
         Debug.Log("Spawn Position: " + rb.position);
-
         //LaunchBall();
         StartCoroutine(DelayedLaunchBall());
     }
@@ -36,6 +36,7 @@ public class BallScript : MonoBehaviour
         // Random respawn position
             float randomX = Random.Range(minSpawnX, maxSpawnX);
             rb.position = new Vector2(randomX, spawnY);
+            scoreScript.LoseLife();
             Debug.Log("Respawn Position: " + rb.position);
             //LaunchBall();
             StartCoroutine(DelayedLaunchBall());
