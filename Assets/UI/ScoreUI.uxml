@@ -1,4 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:Label text="Score: 0" name="Score" style="-unity-font-definition: url(&quot;project://database/Assets/Font/PressStart2P-vaV7.ttf?fileID=12800000&amp;guid=6778c68e2aa863041b6490954c9a6b20&amp;type=3#PressStart2P-vaV7&quot;); color: rgb(255, 255, 255);"/>
-    <ui:Label text="Lives:***" style="-unity-font-definition: url(&quot;project://database/Assets/Font/PressStart2P-vaV7.ttf?fileID=12800000&amp;guid=6778c68e2aa863041b6490954c9a6b20&amp;type=3#PressStart2P-vaV7&quot;); color: rgb(255, 255, 255);"/>
+    <ui:Label text="Lives:***" name="Lives" style="-unity-font-definition: url(&quot;project://database/Assets/Font/PressStart2P-vaV7.ttf?fileID=12800000&amp;guid=6778c68e2aa863041b6490954c9a6b20&amp;type=3#PressStart2P-vaV7&quot;); color: rgb(255, 255, 255); -unity-text-align: middle-left;"/>
 </ui:UXML>
