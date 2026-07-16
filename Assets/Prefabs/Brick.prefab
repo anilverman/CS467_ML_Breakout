@@ -181,3 +181,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BrickScript
   points: 100
+  BrickBreakEffect: {fileID: 8629449130897908149, guid: 2d5cd6d94f42847ac925ae037db97574, type: 3}

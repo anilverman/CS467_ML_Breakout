@@ -153,15 +153,15 @@ MonoBehaviour:
   columns: 8
   rowSpace: 0.6
   columnSpace: 3.1
-  startPosition: {x: -10.9, y: 7}
+  startPosition: {x: -10.9, y: 5}
   colors:
-  - {r: 0.990566, g: 0, b: 0, a: 1}
-  - {r: 0.12094951, g: 1, b: 0, a: 1}
-  - {r: 0, g: 0.07855141, b: 1, a: 1}
-  - {r: 1, g: 0, b: 0.9425912, a: 1}
-  - {r: 0.98039216, g: 0.52434987, b: 0.003921577, a: 1}
-  - {r: 0, g: 1, b: 0.9400834, a: 1}
-  - {r: 1, g: 0.9419505, b: 0, a: 1}
+  - {r: 0.98039216, g: 0.7647059, b: 0.8055721, a: 1}
+  - {r: 0.88235295, g: 0.8335397, b: 0.6509804, a: 1}
+  - {r: 0.61960787, g: 0.9529412, b: 0.8656246, a: 1}
+  - {r: 0.7411765, g: 0.89411765, b: 0.8773691, a: 1}
+  - {r: 0.7058824, g: 0.78047156, b: 0.80784315, a: 1}
+  - {r: 0.8117647, g: 0.8345617, b: 0.9137255, a: 1}
+  - {r: 0.6857713, g: 0.6239765, b: 0.7735849, a: 1}
 --- !u!4 &55554625
 Transform:
   m_ObjectHideFlags: 0
@@ -392,8 +392,8 @@ Transform:
   m_GameObject: {fileID: 259475734}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.893889, y: -10.9067, z: 0}
-  m_LocalScale: {x: 26.755156, y: 1, z: 1}
+  m_LocalPosition: {x: 10.9205, y: -10.503, z: 0}
+  m_LocalScale: {x: 26.665466, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1096481634}
@@ -531,8 +531,8 @@ Transform:
   m_GameObject: {fileID: 425732714}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.50669, y: 5.0993004, z: 0}
-  m_LocalScale: {x: 27.692892, y: 1, z: 1}
+  m_LocalPosition: {x: 10.9178, y: 3.2, z: 0}
+  m_LocalScale: {x: 26.660938, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1096481634}
@@ -652,6 +652,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 566352476}
+  - component: {fileID: 566352477}
   m_Layer: 0
   m_Name: Bricks
   m_TagString: Untagged
@@ -674,6 +675,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &566352477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566352475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d23fc9241095614c88c2a4a342ce6d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BrickScript
+  points: 100
+  BrickBreakEffect: {fileID: 8629449130897908149, guid: 2d5cd6d94f42847ac925ae037db97574, type: 3}
 --- !u!1 &609383186
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,8 +994,8 @@ Transform:
   m_GameObject: {fileID: 1302121881}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.9130106, y: -2.903691, z: 0}
-  m_LocalScale: {x: 1, y: 17.005909, z: 1}
+  m_LocalPosition: {x: -2.3128, y: -3.688, z: 0}
+  m_LocalScale: {x: 0.2, y: 13.827738, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1096481634}
@@ -1118,8 +1133,8 @@ Transform:
   m_GameObject: {fileID: 1596682043}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.753689, y: -2.90389, z: 0}
-  m_LocalScale: {x: 1, y: -17.00637, z: 1}
+  m_LocalPosition: {x: 24.1527, y: -3.632, z: 0}
+  m_LocalScale: {x: 0.2, y: -13.86296, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1096481634}
