@@ -7,7 +7,7 @@ public class BrickSpawnScript : MonoBehaviour
     public int columns = 6;
     public float rowSpace =.25f;
     public float columnSpace = .25f;
-    public Vector2 startPosition = new Vector2(-10, 7);
+    public Vector2 startPosition = new Vector2(-10, 5);
     public Color[] colors;
 
     void Start()
@@ -33,6 +33,7 @@ public class BrickSpawnScript : MonoBehaviour
         while (System.Array.Exists(rowColors, c => c == randomColor));
 
         rowColors[i] = randomColor;
+
     }
 
     // Generates each brick and places them in a row and column. Number of rows and columns editable on Unity.

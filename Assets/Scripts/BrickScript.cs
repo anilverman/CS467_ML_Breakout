@@ -4,6 +4,8 @@ public class BrickScript : MonoBehaviour
 {
     public int points = 100;
     private ScoreScript scoreScript;
+    public GameObject BrickBreakEffect;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,6 +17,7 @@ public class BrickScript : MonoBehaviour
         scoreScript.UpdateScore(points);
         Destroy(gameObject);
         Debug.Log("Brick Destroyed");
+        Instantiate(BrickBreakEffect, transform.position, transform.rotation);
     }
 
     // Update is called once per frame
