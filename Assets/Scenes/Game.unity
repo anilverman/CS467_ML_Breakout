@@ -150,10 +150,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BrickSpawnScript
   Brick: {fileID: 733334305268661151, guid: 4d909ccd9452442848fc8b598c23d35f, type: 3}
   rows: 7
-  columns: 8
+  columns: 14
   rowSpace: 0.6
-  columnSpace: 3.1
-  startPosition: {x: -10.9, y: 5}
+  columnSpace: 1.7
+  startPosition: {x: -10.9, y: 4.8}
   colors:
   - {r: 0.98039216, g: 0.7647059, b: 0.8055721, a: 1}
   - {r: 0.88235295, g: 0.8335397, b: 0.6509804, a: 1}
@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 184664027}
   - component: {fileID: 184664030}
   - component: {fileID: 184664031}
-  - component: {fileID: 184664032}
+  - component: {fileID: 184664033}
   m_Layer: 0
   m_Name: Paddle
   m_TagString: Paddle
@@ -311,9 +311,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5082aafd78514e40af4fdc7cc2ae300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaddleScript
-  speed: 15
---- !u!60 &184664032
-PolygonCollider2D:
+  speed: 22
+--- !u!61 &184664033
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -356,15 +356,8 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.15, y: 0.5}
-      - {x: -0.5, y: -0.15}
-      - {x: -0.5, y: -0.5}
-      - {x: 0.5, y: -0.5}
-      - {x: 0.5, y: -0.15}
-      - {x: 0.15, y: 0.5}
-  m_UseDelaunayMesh: 1
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &259475734
 GameObject:
   m_ObjectHideFlags: 0
@@ -962,11 +955,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4991c1524a3e1f242afaa5d7eebf790c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallScript
-  speed: 10
+  speed: 12
   launchDelay: 0.5
   minSpawnX: -6
   maxSpawnX: 6
   spawnY: 0
+  timeNoHit: 5
 --- !u!1 &1302121881
 GameObject:
   m_ObjectHideFlags: 0
