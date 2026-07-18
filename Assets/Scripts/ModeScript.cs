@@ -34,7 +34,7 @@ public class ModeScript : MonoBehaviour
     {
         SceneManager.LoadScene("Game_Training");
     }
-    
+
     void Back()
     {
         SceneManager.LoadScene("MainMenu");
