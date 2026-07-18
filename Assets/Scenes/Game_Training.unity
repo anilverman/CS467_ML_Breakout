@@ -150,10 +150,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BrickSpawnScript
   Brick: {fileID: 733334305268661151, guid: 4d909ccd9452442848fc8b598c23d35f, type: 3}
   rows: 7
-  columns: 8
+  columns: 14
   rowSpace: 0.6
-  columnSpace: 3.1
-  startPosition: {x: -10.9, y: 5}
+  columnSpace: 1.7
+  startPosition: {x: -10.9, y: 4.8}
   colors:
   - {r: 0.98039216, g: 0.7647059, b: 0.8055721, a: 1}
   - {r: 0.88235295, g: 0.8335397, b: 0.6509804, a: 1}
