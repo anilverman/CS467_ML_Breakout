@@ -11,8 +11,8 @@ public class BallScript : MonoBehaviour
     public float minSpawnX = -10f;
     public float maxSpawnX = 10f;
     public float spawnY = 0f;
-    public float timeNoHit = 8f;
-    private float timeSinceHit = 0f;
+    // public float timeNoHit = 8f;
+    // private float timeSinceHit = 0f;
 
     private Rigidbody2D rb;
     private ScoreScript scoreScript;
@@ -44,7 +44,7 @@ public class BallScript : MonoBehaviour
             StartCoroutine(DelayedLaunchBall());
         }
     }
-
+    /*
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Paddle") || collision.gameObject.CompareTag("Brick"))
@@ -52,6 +52,7 @@ public class BallScript : MonoBehaviour
             timeSinceHit = 0f;
         }
     }
+    */
 
     void LaunchBall()
     {
@@ -85,7 +86,7 @@ public class BallScript : MonoBehaviour
     {
         // Preventing acceleration of the Ball
         rb.linearVelocity = rb.linearVelocity.normalized * speed;
-
+        /*
         // Checking if the timeSinceHit is greater than the timeNoHit and respawns the ball if so
         timeSinceHit += Time.fixedDeltaTime;
         if (timeSinceHit >= timeNoHit)
@@ -93,6 +94,7 @@ public class BallScript : MonoBehaviour
             LaunchBall();
             timeSinceHit = 0f;
         }
+        */
     }
 
 }
