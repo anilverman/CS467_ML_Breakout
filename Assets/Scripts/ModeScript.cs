@@ -6,6 +6,7 @@ public class ModeScript : MonoBehaviour
 {
     private UIDocument uiDocument;
     private Button startButton;
+    private Button trainingButton;
     private Button backButton;
     void OnEnable()
     {
@@ -15,9 +16,11 @@ public class ModeScript : MonoBehaviour
     {
         uiDocument = GetComponent<UIDocument>();
         startButton = uiDocument.rootVisualElement.Q<Button>("1Player");
+        trainingButton = uiDocument.rootVisualElement.Q<Button>("Training");
         backButton = uiDocument.rootVisualElement.Q<Button>("Back");
 
         startButton.clicked += StartGame;
+        trainingButton.clicked += Training;
         backButton.clicked += Back;
 
     }
@@ -26,6 +29,12 @@ public class ModeScript : MonoBehaviour
     {
         SceneManager.LoadScene("Game");
     }
+
+    void Training()
+    {
+        SceneManager.LoadScene("Game_Training");
+    }
+    
     void Back()
     {
         SceneManager.LoadScene("MainMenu");
