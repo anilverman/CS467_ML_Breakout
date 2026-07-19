@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BrickSpawnScript : MonoBehaviour
@@ -5,8 +6,8 @@ public class BrickSpawnScript : MonoBehaviour
     public GameObject Brick;
     public int rows = 6;
     public int columns = 6;
-    public float rowSpace =.25f;
-    public float columnSpace = .25f;
+    public float rowSpace = 0.25f;
+    public float columnSpace = 0.25f;
     public Vector2 startPosition = new Vector2(-10, 5);
     public Color[] colors;
 
@@ -14,43 +15,70 @@ public class BrickSpawnScript : MonoBehaviour
     {
         SpawnBricks();
     }
-/// <summary>
-/// Spawns bricks in uniform rows and columns. Randomizes the colors & does not allow repeat colors.
-/// </summary>
+
+    /// <summary>
+    /// Destroys all existing bricks and spawns a fresh set.
+    /// </summary>
+    public void ResetBricks()
+    {
+        StartCoroutine(ResetBricksCoroutine());
+    }
+
+    private IEnumerator ResetBricksCoroutine()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Wait one frame so the old bricks are actually destroyed.
+        yield return null;
+
+        SpawnBricks();
+    }
+
+    /// <summary>
+    /// Spawns bricks in uniform rows and columns.
+    /// Each row gets a random color with no repeated row colors.
+    /// </summary>
     public void SpawnBricks()
-{
-    Color[] rowColors = new Color[rows];
-
-    // Checks to make sure a color isn't used then assigns the color.
-    for (int i = 0; i < rows; i++)
     {
-        Color randomColor;
+        Color[] rowColors = new Color[rows];
 
-        do
+        // Choose a unique color for each row.
+        for (int i = 0; i < rows; i++)
         {
-            randomColor = colors[Random.Range(0, colors.Length)];
+            Color randomColor;
+
+            do
+            {
+                randomColor = colors[Random.Range(0, colors.Length)];
+            }
+            while (System.Array.Exists(rowColors, c => c == randomColor));
+
+            rowColors[i] = randomColor;
         }
-        while (System.Array.Exists(rowColors, c => c == randomColor));
 
-        rowColors[i] = randomColor;
-
-    }
-
-    // Generates each brick and places them in a row and column. Number of rows and columns editable on Unity.
-    for (int row = 0; row < rows; row++)
-    {
-        for (int col = 0; col < columns; col++)
+        // Spawn the bricks.
+        for (int row = 0; row < rows; row++)
         {
-            Vector2 position = new Vector2(
-                startPosition.x + (col * columnSpace),
-                startPosition.y - (row * rowSpace)
-            );
+            for (int col = 0; col < columns; col++)
+            {
+                Vector2 position = new Vector2(
+                    startPosition.x + (col * columnSpace),
+                    startPosition.y - (row * rowSpace)
+                );
 
-            GameObject newBrick = Instantiate(Brick, position, Quaternion.identity);
+                GameObject newBrick = Instantiate(
+                    Brick,
+                    position,
+                    Quaternion.identity,
+                    transform   // Make this spawner the parent
+                );
 
-            SpriteRenderer renderer = newBrick.GetComponent<SpriteRenderer>();
-            renderer.color = rowColors[row];
+                SpriteRenderer renderer = newBrick.GetComponent<SpriteRenderer>();
+                renderer.color = rowColors[row];
+            }
         }
     }
-}
 }

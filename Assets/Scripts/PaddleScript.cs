@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PaddleScript : MonoBehaviour
 {
     public float speed = 10f;
-    Rigidbody2D rb; 
+    Rigidbody2D rb;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -13,7 +13,8 @@ public class PaddleScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update(){
+    void Update()
+    {
 
     }
 

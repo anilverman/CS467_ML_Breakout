@@ -636,52 +636,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1 &566352475
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 566352476}
-  - component: {fileID: 566352477}
-  m_Layer: 0
-  m_Name: Bricks
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &566352476
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 566352475}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.11675, y: -0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &566352477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 566352475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d23fc9241095614c88c2a4a342ce6d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BrickScript
-  points: 100
-  BrickBreakEffect: {fileID: 8629449130897908149, guid: 2d5cd6d94f42847ac925ae037db97574, type: 3}
 --- !u!1 &609383186
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,6 +911,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BallScript
   speed: 12
   launchDelay: 0.5
+  minimumVerticalSpeed: 2
+  minimumHorizontalSpeed: 1
   minSpawnX: -6
   maxSpawnX: 6
   spawnY: 0
@@ -1383,7 +1339,6 @@ SceneRoots:
   - {fileID: 1911274298}
   - {fileID: 609383188}
   - {fileID: 1096481634}
-  - {fileID: 566352476}
   - {fileID: 1157833919}
   - {fileID: 184664028}
   - {fileID: 55554625}

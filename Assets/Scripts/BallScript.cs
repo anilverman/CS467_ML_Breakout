@@ -7,6 +7,10 @@ public class BallScript : MonoBehaviour
     public float speed = 8f;
     public float launchDelay = 0.5f;
 
+    // Prevent the ball from becoming too horizontal or vertical
+    public float minimumVerticalSpeed = 2f;
+    public float minimumHorizontalSpeed = 1f;
+
     // Range of values for where the Ball can possibly spawn
     public float minSpawnX = -10f;
     public float maxSpawnX = 10f;
@@ -16,6 +20,7 @@ public class BallScript : MonoBehaviour
 
     private Rigidbody2D rb;
     private ScoreScript scoreScript;
+    private PaddleAgent paddleAgent;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,6 +28,7 @@ public class BallScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         scoreScript = FindFirstObjectByType<ScoreScript>();
+        paddleAgent = FindFirstObjectByType<PaddleAgent>();
         // Random spawn position
         float randomX = Random.Range(minSpawnX, maxSpawnX);
         rb.position = new Vector2(randomX, spawnY);
@@ -34,14 +40,26 @@ public class BallScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Respawns the ball if the ball falls below the paddle/beyond the bottom boundary
-        if(other.CompareTag("OutOfBounds")){
-        // Random respawn position
-            float randomX = Random.Range(minSpawnX, maxSpawnX);
-            rb.position = new Vector2(randomX, spawnY);
-            scoreScript.LoseLife();
-            Debug.Log("Respawn Position: " + rb.position);
-            //LaunchBall();
-            StartCoroutine(DelayedLaunchBall());
+        if (other.CompareTag("OutOfBounds"))
+        {
+            if (paddleAgent != null)
+            {
+                // Training scene:
+                // punish the agent and let OnEpisodeBegin reset the ball.
+                paddleAgent.HandleBallOutOfBounds();
+            }
+            else
+            {
+                // Normal game scene:
+                scoreScript.LoseLife();
+
+                // Random respawn position
+                float randomX = Random.Range(minSpawnX, maxSpawnX);
+                rb.position = new Vector2(randomX, spawnY);
+
+                Debug.Log("Respawn Position: " + rb.position);
+                StartCoroutine(DelayedLaunchBall());
+            }
         }
     }
     /*
@@ -59,10 +77,13 @@ public class BallScript : MonoBehaviour
         // Float for the angle that the ball is launched at
         float angle;
         // Making random spawn angles be only to the left or right and never straight down
-        if(Random.value < 0.5f){
+        if (Random.value < 0.5f)
+        {
             // angle = Random.Range(210f, 250f);
             angle = 225f;
-        } else {
+        }
+        else
+        {
             // angle = Random.Range(290f, 330f);
             angle = 315f;
         }
@@ -82,19 +103,63 @@ public class BallScript : MonoBehaviour
         LaunchBall();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        // Preventing acceleration of the Ball
-        rb.linearVelocity = rb.linearVelocity.normalized * speed;
-        /*
-        // Checking if the timeSinceHit is greater than the timeNoHit and respawns the ball if so
-        timeSinceHit += Time.fixedDeltaTime;
-        if (timeSinceHit >= timeNoHit)
+        Vector2 velocity = rb.linearVelocity;
+
+        // Do nothing while the ball is waiting to launch.
+        if (velocity.sqrMagnitude < 0.001f)
         {
-            LaunchBall();
-            timeSinceHit = 0f;
+            return;
         }
-        */
+
+        // Prevent nearly horizontal movement.
+        if (Mathf.Abs(velocity.y) < minimumVerticalSpeed)
+        {
+            float verticalDirection;
+
+            if (Mathf.Approximately(velocity.y, 0f))
+            {
+                verticalDirection = Random.value < 0.5f ? -1f : 1f;
+            }
+            else
+            {
+                verticalDirection = Mathf.Sign(velocity.y);
+            }
+
+            velocity.y = minimumVerticalSpeed * verticalDirection;
+        }
+
+        // Prevent nearly vertical movement.
+        if (Mathf.Abs(velocity.x) < minimumHorizontalSpeed)
+        {
+            float horizontalDirection;
+
+            if (Mathf.Approximately(velocity.x, 0f))
+            {
+                horizontalDirection = Random.value < 0.5f ? -1f : 1f;
+            }
+            else
+            {
+                horizontalDirection = Mathf.Sign(velocity.x);
+            }
+
+            velocity.x = minimumHorizontalSpeed * horizontalDirection;
+        }
+
+        // Keep the overall speed constant.
+        rb.linearVelocity = velocity.normalized * speed;
+    }
+
+    public void ResetBall()
+    {
+        StopAllCoroutines();
+
+        float randomX = Random.Range(minSpawnX, maxSpawnX);
+        rb.position = new Vector2(randomX, spawnY);
+        rb.linearVelocity = Vector2.zero;
+
+        StartCoroutine(DelayedLaunchBall());
     }
 
 }

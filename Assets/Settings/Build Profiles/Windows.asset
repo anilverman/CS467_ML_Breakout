@@ -34,6 +34,9 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/Scenes/GameOver.unity
     m_guid: 845f405f44d3dc5499e530f60f73c63d
+  - m_enabled: 1
+    m_path: Assets/Scenes/Game_Training.unity
+    m_guid: 435f34126d9a4441bbced4b54c3ae922
   m_HasScriptingDefines: 0
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
@@ -42,6 +45,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 1498012322695479505
       type: {class: WindowsPlatformSettings, ns: UnityEditor.WindowsStandalone, asm: UnityEditor.WindowsStandalone.Extensions}
       data:
