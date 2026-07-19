@@ -7,6 +7,7 @@ public class MainMenuScript : MonoBehaviour
     private UIDocument uiDocument;
     private Button startButton;
     private Button quitButton;
+    private Button leaderboardButton;
     void OnEnable()
     {
         Buttons();
@@ -16,9 +17,11 @@ public class MainMenuScript : MonoBehaviour
         uiDocument = GetComponent<UIDocument>();
         startButton = uiDocument.rootVisualElement.Q<Button>("Start");
         quitButton = uiDocument.rootVisualElement.Q<Button>("Quit");
+        leaderboardButton = uiDocument.rootVisualElement.Q<Button>("Leaderboard");
 
         startButton.clicked += StartGame;
         quitButton.clicked += QuitGame;
+        leaderboardButton.clicked += Leaderboard;
 
     }
 
@@ -29,5 +32,9 @@ public class MainMenuScript : MonoBehaviour
     void QuitGame()
     {
         Application.Quit();
+    }
+    void Leaderboard()
+    {
+        SceneManager.LoadScene("Leaderboard");
     }
 }

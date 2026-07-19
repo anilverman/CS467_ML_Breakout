@@ -7,7 +7,7 @@ public class ScoreScript : MonoBehaviour
 {
     private UIDocument uiDocument;
     private Label scoreText;
-    private float score = 0f;
+    private int score = 0;
     private Label livesText;
     private int lives = 3;
 
@@ -39,6 +39,7 @@ public class ScoreScript : MonoBehaviour
                 livesText.text = "Lives: *";
                 break;
             case 0:
+                LeaderboardScript.SaveScore(score);
                 SceneManager.LoadScene("GameOver");
                 break;
         }
