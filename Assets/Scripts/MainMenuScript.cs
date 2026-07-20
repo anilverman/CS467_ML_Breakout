@@ -8,6 +8,7 @@ public class MainMenuScript : MonoBehaviour
     private Button startButton;
     private Button quitButton;
     private Button leaderboardButton;
+    public AudioClip click;
     void OnEnable()
     {
         Buttons();
@@ -26,14 +27,33 @@ public class MainMenuScript : MonoBehaviour
 
     void StartGame()
     {
+        PlayClick();
+        Invoke("LoadStart", 0.025f);
+    }
+    void LoadStart()
+    {
         SceneManager.LoadScene("Mode");
     }
     void QuitGame()
+    {
+        PlayClick();
+        Invoke("LoadQuit", 0.025f);
+    }
+    void LoadQuit()
     {
         Application.Quit();
     }
     void Leaderboard()
     {
+        PlayClick();  
+        Invoke("LoadLeaderboard", 0.05f);
+    }
+    void LoadLeaderboard()
+    {
         SceneManager.LoadScene("Leaderboard");
+    }
+    void PlayClick()
+    {
+        AudioSource.PlayClipAtPoint(click, transform.position);  
     }
 }

@@ -6,6 +6,7 @@ public class LeaderboardUIScript : MonoBehaviour
 {
     private UIDocument uiDocument;
     private Button backButton;
+    public AudioClip click;
     void Start()
     {
         UIDocument ui = GetComponent<UIDocument>();
@@ -30,7 +31,16 @@ public class LeaderboardUIScript : MonoBehaviour
 
     void Back()
     {
+        PlayClick();
+        Invoke("LoadBack", 0.025f);
+    }
+    void LoadBack()
+    {
         SceneManager.LoadScene("MainMenu");
+    }
+    void PlayClick()
+    {
+        AudioSource.PlayClipAtPoint(click, transform.position);  
     }
 
 }
