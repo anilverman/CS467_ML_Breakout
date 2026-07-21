@@ -21,6 +21,7 @@ public class BallScript : MonoBehaviour
     private Rigidbody2D rb;
     private ScoreScript scoreScript;
     private PaddleAgent paddleAgent;
+    public AudioClip paddleHit;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -71,6 +72,14 @@ public class BallScript : MonoBehaviour
         }
     }
     */
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Paddle"))
+        {
+            AudioSource.PlayClipAtPoint(paddleHit, transform.position);
+        }
+    }
 
     void LaunchBall()
     {

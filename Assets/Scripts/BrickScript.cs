@@ -5,6 +5,7 @@ public class BrickScript : MonoBehaviour
     public int points = 100;
     private ScoreScript scoreScript;
     public GameObject BrickBreakEffect;
+    public AudioClip brickBreak;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,6 +16,7 @@ public class BrickScript : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         scoreScript.UpdateScore(points);
+        AudioSource.PlayClipAtPoint(brickBreak, transform.position);
         Destroy(gameObject);
         Debug.Log("Brick Destroyed");
         Instantiate(BrickBreakEffect, transform.position, transform.rotation);

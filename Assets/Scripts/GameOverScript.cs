@@ -7,6 +7,7 @@ public class GameOverScript : MonoBehaviour
     private UIDocument uiDocument;
     private Button restartButton;
     private Button mainMenuButton;
+    public AudioClip click;
     void OnEnable()
     {
         Buttons();
@@ -24,10 +25,24 @@ public class GameOverScript : MonoBehaviour
 
     void Restart()
     {
+        PlayClick();
+        Invoke("LoadRestart", 0.025f);
+    }
+    void LoadRestart()
+    {
         SceneManager.LoadScene("Game");
     }
     void MainMenu()
     {
+        PlayClick();
+        Invoke("LoadMainMenu", 0.025f);
+    }
+    void LoadMainMenu()
+    {
         SceneManager.LoadScene("MainMenu");
+    }
+    void PlayClick()
+    {
+        AudioSource.PlayClipAtPoint(click, transform.position);  
     }
 }
