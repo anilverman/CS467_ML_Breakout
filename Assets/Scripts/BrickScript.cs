@@ -4,6 +4,7 @@ public class BrickScript : MonoBehaviour
 {
     public int points = 100;
     private ScoreScript scoreScript;
+    private RewardScript rewardScript;
     public GameObject BrickBreakEffect;
     public AudioClip brickBreak;
 
@@ -11,11 +12,13 @@ public class BrickScript : MonoBehaviour
     void Start()
     {
         scoreScript = FindObjectOfType<ScoreScript>();
+        rewardScript = FindFirstObjectByType<RewardScript>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         scoreScript.UpdateScore(points);
+        rewardScript.BrickBrokenReward();
         AudioSource.PlayClipAtPoint(brickBreak, transform.position);
         Destroy(gameObject);
         Debug.Log("Brick Destroyed");

@@ -21,6 +21,7 @@ public class BallScript : MonoBehaviour
     private Rigidbody2D rb;
     private ScoreScript scoreScript;
     private PaddleAgent paddleAgent;
+    private RewardScript rewardScript;
     public AudioClip paddleHit;
 
 
@@ -30,6 +31,7 @@ public class BallScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         scoreScript = FindFirstObjectByType<ScoreScript>();
         paddleAgent = FindFirstObjectByType<PaddleAgent>();
+        rewardScript = FindFirstObjectByType<RewardScript>();
         // Random spawn position
         float randomX = Random.Range(minSpawnX, maxSpawnX);
         rb.position = new Vector2(randomX, spawnY);
@@ -78,6 +80,7 @@ public class BallScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Paddle"))
         {
             AudioSource.PlayClipAtPoint(paddleHit, transform.position);
+            rewardScript.PaddleBlockReward();
         }
     }
 
