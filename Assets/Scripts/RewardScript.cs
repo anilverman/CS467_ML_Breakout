@@ -13,13 +13,18 @@ public class RewardScript : MonoBehaviour
     private float BrickReward = 1f;
     private float PaddleReward = 0.1f;
     private float BallLost = -1f;
-    private float Alive Reward = 0.001f;
+    private float SurviveReward = 0.001f;
+    private float LevelComplete = 3f;
+    private float BrickCombo = 2f;
+    private float SmoothMove = 0.001f;
+
+    private PaddleAgent paddleAgent;
 
 
     void Start()
     {
         // create reference to PaddleAgent to access AddReward function
-        agent = FindFirstObjectByType<PaddleAgent>(); 
+        paddleAgent = FindFirstObjectByType<PaddleAgent>();
     }
 
     /// <summary>
@@ -27,7 +32,7 @@ public class RewardScript : MonoBehaviour
     /// </summary>
     public void BrickBrokenReward()
     {
-        agent.AddReward(BrickReward);
+        paddleAgent.AddReward(BrickReward);
 
         Debug.Log("Reward: Brick was broken +1");
     }
@@ -37,7 +42,7 @@ public class RewardScript : MonoBehaviour
     /// </summary>
     public void PaddleBlockReward()
     {
-        agent.AddReward(0.1f);
+        paddleAgent.AddReward(PaddleReward);
 
         Debug.Log("Reward: Paddle blocked ball +0.1");
     }
@@ -47,7 +52,7 @@ public class RewardScript : MonoBehaviour
     /// </summary>
     public void LostBallPenalty()
     {
-        agent.AddReward(-1f);
+        paddleAgent.AddReward(BallLost);
 
         Debug.Log("Penalty: Missed ball -1");
     }
@@ -57,7 +62,7 @@ public class RewardScript : MonoBehaviour
     /// </summary>
     public void AliveReward()
     {
-        agent.AddReward(.001f);
+        paddleAgent.AddReward(SurviveReward);
 
         Debug.Log("Reward: Continued to stay alive +.001");
     }
@@ -72,7 +77,7 @@ public class RewardScript : MonoBehaviour
     /// </summary>
     public void LevelCompleteReward()
     {
-        agent.AddReward(3f);
+        paddleAgent.AddReward(LevelComplete);
 
         Debug.Log("Reward: Level cleared +3");
     }
@@ -82,7 +87,7 @@ public class RewardScript : MonoBehaviour
     /// </summary>
     public void BrickBreakComboReward()
     {
-        agent.AddReward(2f);
+        paddleAgent.AddReward(BrickCombo);
 
         Debug.Log("Reward: Broke multiple bricks with one deflection +2");
     }
@@ -92,7 +97,7 @@ public class RewardScript : MonoBehaviour
     /// </summary>
     public void StableMovementReward()
     {
-        agent.AddReward(0.001f);
+        paddleAgent.AddReward(SmoothMove);
 
         Debug.Log("Reward: Smooth paddle movement +.001");
     }

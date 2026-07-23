@@ -18,11 +18,11 @@ public class BrickScript : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         scoreScript.UpdateScore(points);
-        rewardScript.BrickBrokenReward();
         AudioSource.PlayClipAtPoint(brickBreak, transform.position);
         Destroy(gameObject);
         Debug.Log("Brick Destroyed");
         Instantiate(BrickBreakEffect, transform.position, transform.rotation);
+        rewardScript.BrickBrokenReward();
     }
 
     // Update is called once per frame
