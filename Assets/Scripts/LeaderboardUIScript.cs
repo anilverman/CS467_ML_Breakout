@@ -15,7 +15,9 @@ public class LeaderboardUIScript : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             Label label = root.Q<Label>("Score" + (i + 1));
-            label.text = $"{i + 1}. {PlayerPrefs.GetInt("HighScore" + i, 0)}";
+            int score = PlayerPrefs.GetInt("HighScore" + i, 0);
+            float time = PlayerPrefs.GetFloat("HighScoreTime" + i, 0);
+            label.text = $"{i + 1}. {score} - {time:F2}s";
         }
     }
     void OnEnable()

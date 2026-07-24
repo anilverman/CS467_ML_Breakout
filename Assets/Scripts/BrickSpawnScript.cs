@@ -10,6 +10,8 @@ public class BrickSpawnScript : MonoBehaviour
     public float columnSpace = 0.25f;
     public Vector2 startPosition = new Vector2(-10, 5);
     public Color[] colors;
+    private int bricksLeft;
+    public BallScript ballScript;
 
     void Start()
     {
@@ -35,6 +37,8 @@ public class BrickSpawnScript : MonoBehaviour
         yield return null;
 
         SpawnBricks();
+        ballScript.speed ++;
+        Debug.Log(ballScript.speed);
     }
 
     /// <summary>
@@ -43,6 +47,7 @@ public class BrickSpawnScript : MonoBehaviour
     /// </summary>
     public void SpawnBricks()
     {
+        bricksLeft = rows * columns;
         Color[] rowColors = new Color[rows];
 
         // Choose a unique color for each row.
@@ -79,6 +84,15 @@ public class BrickSpawnScript : MonoBehaviour
                 SpriteRenderer renderer = newBrick.GetComponent<SpriteRenderer>();
                 renderer.color = rowColors[row];
             }
+        }
+    }
+    public void BricksDestroyed()
+    {
+        bricksLeft --;
+
+        if (bricksLeft <= 0)
+        {
+            ResetBricks();
         }
     }
 }
