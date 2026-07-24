@@ -4,6 +4,7 @@ public class BrickScript : MonoBehaviour
 {
     public int points = 100;
     private ScoreScript scoreScript;
+    private RewardScript rewardScript;
     public GameObject BrickBreakEffect;
     public AudioClip brickBreak;
 
@@ -11,6 +12,7 @@ public class BrickScript : MonoBehaviour
     void Start()
     {
         scoreScript = FindObjectOfType<ScoreScript>();
+        rewardScript = FindFirstObjectByType<RewardScript>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -20,6 +22,7 @@ public class BrickScript : MonoBehaviour
         Destroy(gameObject);
         Debug.Log("Brick Destroyed");
         Instantiate(BrickBreakEffect, transform.position, transform.rotation);
+        rewardScript.BrickBrokenReward();
     }
 
     // Update is called once per frame

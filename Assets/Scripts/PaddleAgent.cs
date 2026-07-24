@@ -19,6 +19,7 @@ public class PaddleAgent : Agent
     private Vector3 paddleStartPosition;
     private BallScript ballScript;
     private BrickSpawnScript brickScript;
+    private RewardScript rewardScript;
 
     public override void Initialize()
     {
@@ -27,6 +28,7 @@ public class PaddleAgent : Agent
 
         ballScript = ball.GetComponent<BallScript>();
         brickScript = FindObjectOfType<BrickSpawnScript>();
+        rewardScript = FindFirstObjectByType<RewardScript>();
     }
 
     public override void OnEpisodeBegin()
@@ -86,13 +88,13 @@ public class PaddleAgent : Agent
         paddleRigidbody.MovePosition(newPosition);
 
         // Tiny reward for staying alive.
-        AddReward(0.001f);
+        rewardScript.AliveReward();
     }
 
     // If the ball falls below the paddle, end the episode with a negative reward. Called from BallScript when the ball goes out of bounds.
     public void HandleBallOutOfBounds()
     {
-        AddReward(-1f);
+        rewardScript.LostBallPenalty();
         EndEpisode();
         Debug.Log("Episode ended due to ball going out of bounds.");
     }
