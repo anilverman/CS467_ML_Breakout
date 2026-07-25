@@ -15,6 +15,7 @@ public class BrickSpawnScript : MonoBehaviour
 
     void Start()
     {
+        ballScript = FindFirstObjectByType<BallScript>();
         SpawnBricks();
     }
 
