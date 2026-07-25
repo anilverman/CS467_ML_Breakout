@@ -47,6 +47,8 @@ public class BallScript : MonoBehaviour
         {
             if (paddleAgent != null)
             {
+                scoreScript.LoseLife();
+                
                 // Training scene:
                 // punish the agent and let OnEpisodeBegin reset the ball.
                 paddleAgent.HandleBallOutOfBounds();

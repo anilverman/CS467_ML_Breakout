@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 55554625}
   - component: {fileID: 55554624}
+  - component: {fileID: 55554626}
   m_Layer: 0
   m_Name: BrickSpawn
   m_TagString: Untagged
@@ -162,6 +163,7 @@ MonoBehaviour:
   - {r: 0.7058824, g: 0.78047156, b: 0.80784315, a: 1}
   - {r: 0.8117647, g: 0.8345617, b: 0.9137255, a: 1}
   - {r: 0.6857713, g: 0.6239765, b: 0.7735849, a: 1}
+  ballScript: {fileID: 0}
 --- !u!4 &55554625
 Transform:
   m_ObjectHideFlags: 0
@@ -177,6 +179,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &55554626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55554623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d414b8b236494d359f4bb804467aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RewardScript
 --- !u!1 &184664026
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,6 +1007,7 @@ MonoBehaviour:
   minSpawnX: -6
   maxSpawnX: 6
   spawnY: 0
+  paddleHit: {fileID: 8300000, guid: af222c212b611ab48bcbf0a235ccb331, type: 3}
 --- !u!1 &1302121881
 GameObject:
   m_ObjectHideFlags: 0

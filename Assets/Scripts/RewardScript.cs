@@ -64,7 +64,7 @@ public class RewardScript : MonoBehaviour
     {
         paddleAgent.AddReward(SurviveReward);
 
-        Debug.Log("Reward: Continued to stay alive +.001");
+        // Debug.Log("Reward: Continued to stay alive +.001");
     }
 
 
