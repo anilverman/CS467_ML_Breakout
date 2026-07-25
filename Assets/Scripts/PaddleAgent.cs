@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 
 public class PaddleAgent : Agent
 {
+    [Header("Training")]
+    public bool isTrainingSession = true;
+
     [Header("References")]
     [SerializeField] private Transform ball;
     [SerializeField] private Rigidbody2D ballRigidbody;
@@ -27,12 +30,18 @@ public class PaddleAgent : Agent
         paddleStartPosition = transform.position;
 
         ballScript = ball.GetComponent<BallScript>();
-        brickScript = FindObjectOfType<BrickSpawnScript>();
-        rewardScript = FindFirstObjectByType<RewardScript>();
+        BoardContext board = GetComponentInParent<BoardContext>();
+        brickScript = board != null ? board.brickSpawner : FindObjectOfType<BrickSpawnScript>();
+        rewardScript = board != null ? board.rewards : FindFirstObjectByType<RewardScript>();
     }
 
     public override void OnEpisodeBegin()
     {
+        if (!isTrainingSession)
+        {
+            return;
+        }
+
         // restart the paddle position and reset its velocity
         transform.position = paddleStartPosition;
 
@@ -88,13 +97,24 @@ public class PaddleAgent : Agent
         paddleRigidbody.MovePosition(newPosition);
 
         // Tiny reward for staying alive.
-        rewardScript.AliveReward();
+        if (isTrainingSession && rewardScript != null)
+        {
+            rewardScript.AliveReward();
+        }
     }
 
     // If the ball falls below the paddle, end the episode with a negative reward. Called from BallScript when the ball goes out of bounds.
     public void HandleBallOutOfBounds()
     {
-        rewardScript.LostBallPenalty();
+        if (!isTrainingSession)
+        {
+            return;
+        }
+
+        if (rewardScript != null)
+        {
+            rewardScript.LostBallPenalty();
+        }
         EndEpisode();
         Debug.Log("Episode ended due to ball going out of bounds.");
     }

@@ -6,6 +6,7 @@ public class ModeScript : MonoBehaviour
 {
     private UIDocument uiDocument;
     private Button startButton;
+    private Button humanVsAIButton;
     private Button trainingButton;
     private Button backButton;
     public AudioClip click;
@@ -17,10 +18,12 @@ public class ModeScript : MonoBehaviour
     {
         uiDocument = GetComponent<UIDocument>();
         startButton = uiDocument.rootVisualElement.Q<Button>("1Player");
+        humanVsAIButton = uiDocument.rootVisualElement.Q<Button>("Vs");
         trainingButton = uiDocument.rootVisualElement.Q<Button>("Training");
         backButton = uiDocument.rootVisualElement.Q<Button>("Back");
 
         startButton.clicked += StartGame;
+        humanVsAIButton.clicked += HumanVsAI;
         trainingButton.clicked += Training;
         backButton.clicked += Back;
 
@@ -34,6 +37,17 @@ public class ModeScript : MonoBehaviour
     void LoadStart()
     {
         SceneManager.LoadScene("Game");
+    }
+
+    void HumanVsAI()
+    {
+        PlayClick();
+        Invoke("LoadHumanVsAI", 0.025f);
+    }
+
+    void LoadHumanVsAI()
+    {
+        SceneManager.LoadScene("humanVsAI");
     }
 
     void Training()

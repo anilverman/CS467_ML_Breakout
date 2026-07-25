@@ -29,9 +29,10 @@ public class BallScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        scoreScript = FindFirstObjectByType<ScoreScript>();
-        paddleAgent = FindFirstObjectByType<PaddleAgent>();
-        rewardScript = FindFirstObjectByType<RewardScript>();
+        BoardContext board = GetComponentInParent<BoardContext>();
+        scoreScript = board != null ? board.score : FindFirstObjectByType<ScoreScript>();
+        paddleAgent = board != null ? board.agent : FindFirstObjectByType<PaddleAgent>();
+        rewardScript = board != null ? board.rewards : FindFirstObjectByType<RewardScript>();
         // Random spawn position
         float randomX = Random.Range(minSpawnX, maxSpawnX);
         rb.position = new Vector2(randomX, spawnY);
@@ -47,16 +48,28 @@ public class BallScript : MonoBehaviour
         {
             if (paddleAgent != null)
             {
-                scoreScript.LoseLife();
-                
-                // Training scene:
-                // punish the agent and let OnEpisodeBegin reset the ball.
-                paddleAgent.HandleBallOutOfBounds();
+                if (paddleAgent.isTrainingSession)
+                {
+                    // Training scene: punish the agent and let the next episode reset.
+                    paddleAgent.HandleBallOutOfBounds();
+                }
+                else
+                {
+                    // Inference scene: update the AI's own lives, then keep it playing.
+                    if (scoreScript != null)
+                    {
+                        scoreScript.LoseLife();
+                    }
+                    ResetBall();
+                }
             }
             else
             {
                 // Normal game scene:
-                scoreScript.LoseLife();
+                if (scoreScript != null)
+                {
+                    scoreScript.LoseLife();
+                }
 
                 // Random respawn position
                 float randomX = Random.Range(minSpawnX, maxSpawnX);
@@ -82,7 +95,10 @@ public class BallScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Paddle"))
         {
             AudioSource.PlayClipAtPoint(paddleHit, transform.position);
-            rewardScript.PaddleBlockReward();
+            if (rewardScript != null && paddleAgent != null && paddleAgent.isTrainingSession)
+            {
+                rewardScript.PaddleBlockReward();
+            }
         }
     }
 

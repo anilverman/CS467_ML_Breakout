@@ -15,7 +15,8 @@ public class BrickSpawnScript : MonoBehaviour
 
     void Start()
     {
-        ballScript = FindFirstObjectByType<BallScript>();
+        BoardContext board = GetComponentInParent<BoardContext>();
+        ballScript = board != null ? board.ball : FindFirstObjectByType<BallScript>();
         SpawnBricks();
     }
 

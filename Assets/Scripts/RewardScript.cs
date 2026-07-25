@@ -24,7 +24,8 @@ public class RewardScript : MonoBehaviour
     void Start()
     {
         // create reference to PaddleAgent to access AddReward function
-        paddleAgent = FindFirstObjectByType<PaddleAgent>();
+        BoardContext board = GetComponentInParent<BoardContext>();
+        paddleAgent = board != null ? board.agent : FindFirstObjectByType<PaddleAgent>();
     }
 
     /// <summary>

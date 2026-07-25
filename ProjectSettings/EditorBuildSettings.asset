@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Game_Training.unity
     guid: 435f34126d9a4441bbced4b54c3ae922
   - enabled: 1
+    path: Assets/Scenes/humanVsAI.unity
+    guid: a2c74d2077d1457394ac0a900fc11d01
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: eeb0aa7942c77e342ab7af1264fb3545
   m_configObjects:

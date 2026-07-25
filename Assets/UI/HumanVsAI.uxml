@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement style="position: absolute; left: 0; right: 0; top: 0; bottom: 0;">
+        <ui:Label text="HUMAN" style="-unity-font-definition: url(&quot;project://database/Assets/Font/PressStart2P-vaV7.ttf?fileID=12800000&amp;guid=6778c68e2aa863041b6490954c9a6b20&amp;type=3#PressStart2P-vaV7&quot;); color: white; position: absolute; top: 18px; left: 22%; font-size: 18px; -unity-text-align: middle-center;"/>
+        <ui:Label text="AI" style="-unity-font-definition: url(&quot;project://database/Assets/Font/PressStart2P-vaV7.ttf?fileID=12800000&amp;guid=6778c68e2aa863041b6490954c9a6b20&amp;type=3#PressStart2P-vaV7&quot;); color: white; position: absolute; top: 18px; left: 74%; font-size: 18px; -unity-text-align: middle-center;"/>
+        <ui:VisualElement style="position: absolute; left: 49.9%; top: 0; bottom: 0; width: 2px; background-color: rgba(255, 255, 255, 0.35);"/>
+    </ui:VisualElement>
+</ui:UXML>
