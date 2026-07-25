@@ -32,6 +32,7 @@ public class RewardScript : MonoBehaviour
     /// </summary>
     public void BrickBrokenReward()
     {
+        Debug.Log("Reward given by: " + gameObject.name);
         paddleAgent.AddReward(BrickReward);
 
         Debug.Log("Reward: Brick was broken +1");
