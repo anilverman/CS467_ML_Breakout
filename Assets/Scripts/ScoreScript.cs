@@ -10,6 +10,8 @@ public class ScoreScript : MonoBehaviour
     private int score = 0;
     private Label livesText;
     private int lives = 3;
+    private float timer = 0f;
+    private bool timeOn = true;
 
     void Start()
     {
@@ -22,6 +24,14 @@ public class ScoreScript : MonoBehaviour
     {
         score += points;
         scoreText.text = "Score: " + score;
+    }
+
+    public void Update()
+    {
+       if (timeOn)
+        {
+            timer += Time.deltaTime;
+        } 
     }
 
     public void LoseLife()
@@ -39,7 +49,8 @@ public class ScoreScript : MonoBehaviour
                 livesText.text = "Lives: *";
                 break;
             case 0:
-                LeaderboardScript.SaveScore(score);
+                timeOn = false;
+                LeaderboardScript.SaveScore(score, timer);
                 SceneManager.LoadScene("GameOver");
                 break;
         }
