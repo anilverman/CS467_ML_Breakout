@@ -7,6 +7,7 @@ public class ModeScript : MonoBehaviour
     private UIDocument uiDocument;
     private Button startButton;
     private Button trainingButton;
+    private Button splitscreenButton;
     private Button backButton;
     public AudioClip click;
     void OnEnable()
@@ -18,10 +19,12 @@ public class ModeScript : MonoBehaviour
         uiDocument = GetComponent<UIDocument>();
         startButton = uiDocument.rootVisualElement.Q<Button>("1Player");
         trainingButton = uiDocument.rootVisualElement.Q<Button>("Training");
+        splitscreenButton = uiDocument.rootVisualElement.Q<Button>("Vs");
         backButton = uiDocument.rootVisualElement.Q<Button>("Back");
 
         startButton.clicked += StartGame;
         trainingButton.clicked += Training;
+        splitscreenButton.clicked += Splitscreen;
         backButton.clicked += Back;
 
     }
@@ -45,6 +48,17 @@ public class ModeScript : MonoBehaviour
     void LoadTraining()
     {
         SceneManager.LoadScene("Game_Training");
+    }
+
+    void Splitscreen()
+    {
+        PlayClick();
+        Invoke("LoadSplitscreen", 0.025f);
+    }
+
+    void LoadSplitscreen()
+    {
+        SceneManager.LoadScene("Game_Splitscreen");
     }
 
     void Back()

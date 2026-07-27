@@ -163,7 +163,9 @@ MonoBehaviour:
   - {r: 0.7058824, g: 0.78047156, b: 0.80784315, a: 1}
   - {r: 0.8117647, g: 0.8345617, b: 0.9137255, a: 1}
   - {r: 0.6857713, g: 0.6239765, b: 0.7735849, a: 1}
-  ballScript: {fileID: 0}
+  ballScript: {fileID: 1157833922}
+  scoreScript: {fileID: 280367737}
+  rewardScript: {fileID: 1806906303}
 --- !u!4 &55554625
 Transform:
   m_ObjectHideFlags: 0
@@ -403,6 +405,8 @@ MonoBehaviour:
   moveSpeed: 15
   minX: -15
   maxX: 15
+  brickScript: {fileID: 55554624}
+  rewardScript: {fileID: 1806906303}
 --- !u!114 &184664034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,6 +592,53 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &280367736
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 280367738}
+  - component: {fileID: 280367737}
+  m_Layer: 0
+  m_Name: ScoreScript
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &280367737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280367736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be7ee2d7e16b46428e7803b33d95ff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreScript
+  uiDocument: {fileID: 609383187}
+  lives: 3
+  ballScript: {fileID: 1157833922}
+--- !u!4 &280367738
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280367736}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.91013, y: -7.34449, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &425732714
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,6 +846,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3be7ee2d7e16b46428e7803b33d95ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreScript
+  uiDocument: {fileID: 609383187}
+  lives: 3
+  ballScript: {fileID: 0}
+--- !u!1 &779309118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 779309120}
+  - component: {fileID: 779309119}
+  m_Layer: 0
+  m_Name: GameHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &779309119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779309118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe867a4f4c2887544b635113c50ef735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameHandlerScript
+  playerScore: {fileID: 280367737}
+--- !u!4 &779309120
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779309118}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.91013, y: -7.34449, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1096481633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,6 +1106,7 @@ MonoBehaviour:
   minSpawnX: -6
   maxSpawnX: 6
   spawnY: 0
+  scoreScript: {fileID: 280367737}
   paddleHit: {fileID: 8300000, guid: af222c212b611ab48bcbf0a235ccb331, type: 3}
 --- !u!1 &1302121881
 GameObject:
@@ -1286,6 +1386,50 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1806906302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1806906304}
+  - component: {fileID: 1806906303}
+  m_Layer: 0
+  m_Name: RewardScript
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1806906303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806906302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d414b8b236494d359f4bb804467aa8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RewardScript
+--- !u!4 &1806906304
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806906302}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.91013, y: -7.34449, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1911274295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1429,7 +1573,10 @@ SceneRoots:
   m_Roots:
   - {fileID: 1911274298}
   - {fileID: 609383188}
+  - {fileID: 280367738}
   - {fileID: 1096481634}
   - {fileID: 1157833919}
   - {fileID: 184664028}
   - {fileID: 55554625}
+  - {fileID: 779309120}
+  - {fileID: 1806906304}

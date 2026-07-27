@@ -19,17 +19,17 @@ public class BallScript : MonoBehaviour
     // private float timeSinceHit = 0f;
 
     private Rigidbody2D rb;
-    private ScoreScript scoreScript;
+    [SerializeField] private ScoreScript scoreScript;
     private PaddleAgent paddleAgent;
     private RewardScript rewardScript;
     public AudioClip paddleHit;
+    private bool playerLost = false;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        scoreScript = FindFirstObjectByType<ScoreScript>();
         paddleAgent = FindFirstObjectByType<PaddleAgent>();
         rewardScript = FindFirstObjectByType<RewardScript>();
         // Random spawn position
@@ -42,6 +42,11 @@ public class BallScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // Checking if the player has lost all of their lives
+        if (playerLost)
+        {
+            return;
+        }
         // Respawns the ball if the ball falls below the paddle/beyond the bottom boundary
         if (other.CompareTag("OutOfBounds"))
         {
@@ -66,6 +71,19 @@ public class BallScript : MonoBehaviour
                 StartCoroutine(DelayedLaunchBall());
             }
         }
+
+        if (other.CompareTag("Human_OutOfBounds"))
+        {
+                // Normal game scene:
+                scoreScript.LoseLife();
+
+                // Random respawn position
+                float randomX = Random.Range(minSpawnX, maxSpawnX);
+                rb.position = new Vector2(randomX, spawnY);
+
+                Debug.Log("Respawn Position: " + rb.position);
+                StartCoroutine(DelayedLaunchBall());
+        }
     }
     /*
     private void OnCollisionEnter2D(Collision2D collision)
@@ -76,6 +94,15 @@ public class BallScript : MonoBehaviour
         }
     }
     */
+
+    // Stops the spawning of the ball if the player has lost all of their lives
+    public void StopBall()
+    {
+        playerLost = true;
+        StopAllCoroutines();
+        rb.linearVelocity = Vector2.zero;
+        gameObject.SetActive(false);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

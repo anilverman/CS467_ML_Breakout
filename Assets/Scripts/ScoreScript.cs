@@ -5,17 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class ScoreScript : MonoBehaviour
 {
-    private UIDocument uiDocument;
+    [SerializeField] private UIDocument uiDocument;
     private Label scoreText;
     private int score = 0;
     private Label livesText;
-    private int lives = 3;
+    public int lives = 3;
     private float timer = 0f;
     private bool timeOn = true;
+    [SerializeField] private BallScript ballScript;
 
     void Start()
     {
-        uiDocument = GetComponent<UIDocument>();
         scoreText = uiDocument.rootVisualElement.Q<Label>("Score");
         livesText = uiDocument.rootVisualElement.Q<Label>("Lives");
     }
@@ -50,8 +50,11 @@ public class ScoreScript : MonoBehaviour
                 break;
             case 0:
                 timeOn = false;
+                livesText.text = "Lives: ";
                 LeaderboardScript.SaveScore(score, timer);
-                SceneManager.LoadScene("GameOver");
+                // Stop the ball from spawning
+                ballScript.StopBall();
+                gameObject.SetActive(false);
                 break;
         }
     }

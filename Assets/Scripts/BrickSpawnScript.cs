@@ -12,6 +12,8 @@ public class BrickSpawnScript : MonoBehaviour
     public Color[] colors;
     private int bricksLeft;
     public BallScript ballScript;
+    [SerializeField] private ScoreScript scoreScript;
+    [SerializeField] private RewardScript rewardScript;
 
     void Start()
     {
@@ -84,6 +86,8 @@ public class BrickSpawnScript : MonoBehaviour
 
                 SpriteRenderer renderer = newBrick.GetComponent<SpriteRenderer>();
                 renderer.color = rowColors[row];
+                newBrick.GetComponent<BrickScript>().SetScoreScript(scoreScript);
+                newBrick.GetComponent<BrickScript>().SetRewardScript(rewardScript);
             }
         }
     }

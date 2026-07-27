@@ -3,8 +3,8 @@ using UnityEngine;
 public class BrickScript : MonoBehaviour
 {
     public int points = 100;
-    private ScoreScript scoreScript;
-    private RewardScript rewardScript;
+    [SerializeField] private ScoreScript scoreScript;
+    [SerializeField] private RewardScript rewardScript;
     public GameObject BrickBreakEffect;
     public AudioClip brickBreak;
     public BrickSpawnScript brickSpawnScript;
@@ -12,9 +12,7 @@ public class BrickScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        scoreScript = FindObjectOfType<ScoreScript>();
-        rewardScript = FindFirstObjectByType<RewardScript>();
-        brickSpawnScript = FindFirstObjectByType<BrickSpawnScript>();
+        brickSpawnScript = GetComponentInParent<BrickSpawnScript>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -25,7 +23,20 @@ public class BrickScript : MonoBehaviour
         Destroy(gameObject);
         Debug.Log("Brick Destroyed");
         Instantiate(BrickBreakEffect, transform.position, transform.rotation);
-        rewardScript.BrickBrokenReward();
+        if (rewardScript != null)
+        {
+            rewardScript.BrickBrokenReward();
+        }
+    }
+
+    public void SetScoreScript(ScoreScript script)
+    {
+        scoreScript = script;
+    }
+
+    public void SetRewardScript(RewardScript script)
+    {
+        rewardScript = script;
     }
 
     // Update is called once per frame

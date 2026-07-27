@@ -60,6 +60,13 @@ public class PaddleAgent : Agent
         // Ball movement.
         sensor.AddObservation(ballRigidbody.linearVelocity.x);
         sensor.AddObservation(ballRigidbody.linearVelocity.y);
+
+        Debug.Log(
+            $"Paddle X: {transform.position.x}, " +
+            $"Ball X: {ball.position.x}, " +
+            $"Ball VX: {ballRigidbody.linearVelocity.x}, " +
+            $"Ball VY: {ballRigidbody.linearVelocity.y}"
+        );
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
