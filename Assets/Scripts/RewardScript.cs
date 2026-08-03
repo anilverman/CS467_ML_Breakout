@@ -18,24 +18,47 @@ public class RewardScript : MonoBehaviour
     private float BrickCombo = 2f;
     private float SmoothMove = 0.001f;
 
+    // combo variables 
+    private int comboCount = 0;
+    private float lastBrickBreakTime = 0;
+    private float comboWindow = 1.5f; // successive bricks broken within 1.5 seconds window trigger combo bonus
+
+
     private PaddleAgent paddleAgent;
+    private ComboUIScript comboUIScript;
 
 
     void Start()
     {
         // create reference to PaddleAgent to access AddReward function
         paddleAgent = FindFirstObjectByType<PaddleAgent>();
+
+        // create reference to comboUIScript to pass highest combo integer for display
+        comboUIScript = FindFirstObjectByType<ComboUIScript>();
     }
 
     /// <summary>
-    /// Large rewards for agent breaking bricks
+    /// Large reward for breaking bricks and further reward for breaking breaks in quick succession. 
     /// </summary>
     public void BrickBrokenReward()
     {
         Debug.Log("Reward given by: " + gameObject.name);
         paddleAgent.AddReward(BrickReward);
-
         Debug.Log("Reward: Brick was broken +1");
+
+        if ((Time.time - lastBrickBreakTime) < comboWindow){
+
+            comboCount += 1;
+            BrickBreakComboReward();
+            if (comboCount >= 3)
+            {
+                comboUIScript.DisplayCombo(comboCount);
+            } 
+
+        } else {
+            comboCount = 1;
+        }
+        lastBrickBreakTime = Time.time; // update lastBrickBreakTime to current moment
     }
 
     /// <summary>
@@ -88,9 +111,13 @@ public class RewardScript : MonoBehaviour
     /// </summary>
     public void BrickBreakComboReward()
     {
-        paddleAgent.AddReward(BrickCombo);
+        // calculate combo multiplier
+       float modifyReward;
 
-        Debug.Log("Reward: Broke multiple bricks with one deflection +2");
+       // each combo after the first broken brick adds additional 0.25 points.
+       modifyReward = ((comboCount / 4.0f) - 0.25f);
+       paddleAgent.AddReward(modifyReward);
+       Debug.Log("Reward [Combo]: Brick was broken " + modifyReward);
     }
 
     /// <summary>
