@@ -43,6 +43,9 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/Scenes/Game_Splitscreen.unity
     m_guid: a5398eddcd223494086839519bfde425
+  - m_enabled: 1
+    m_path: Assets/Scenes/Difficulty_Selection.unity
+    m_guid: e60b6ee70de124b8aa03291a184a9b2b
   m_HasScriptingDefines: 0
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
@@ -51,6 +54,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 1498012322695479505
       type: {class: WindowsPlatformSettings, ns: UnityEditor.WindowsStandalone, asm: UnityEditor.WindowsStandalone.Extensions}
       data:

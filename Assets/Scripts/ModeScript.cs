@@ -14,6 +14,7 @@ public class ModeScript : MonoBehaviour
     {
         Buttons();
     }
+
     void Buttons()
     {
         uiDocument = GetComponent<UIDocument>();
@@ -34,6 +35,7 @@ public class ModeScript : MonoBehaviour
         PlayClick();
         Invoke("LoadStart", 0.025f);
     }
+    
     void LoadStart()
     {
         SceneManager.LoadScene("Game");
@@ -58,7 +60,7 @@ public class ModeScript : MonoBehaviour
 
     void LoadSplitscreen()
     {
-        SceneManager.LoadScene("Game_Splitscreen");
+        SceneManager.LoadScene("Difficulty_Selection");
     }
 
     void Back()
@@ -66,10 +68,12 @@ public class ModeScript : MonoBehaviour
         PlayClick();
         Invoke("LoadBack", 0.025f);
     }
+
     void LoadBack()
     {
         SceneManager.LoadScene("MainMenu");
     }
+
     void PlayClick()
     {
         AudioSource.PlayClipAtPoint(click, transform.position);  
