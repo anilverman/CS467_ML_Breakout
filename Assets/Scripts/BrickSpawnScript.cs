@@ -11,9 +11,9 @@ public class BrickSpawnScript : MonoBehaviour
     public Vector2 startPosition = new Vector2(-10, 5);
     public Color[] colors;
     private int bricksLeft;
-    public BallScript ballScript;
     [SerializeField] private ScoreScript scoreScript;
     [SerializeField] private RewardScript rewardScript;
+    [SerializeField] private BallScript ballScript;
 
     void Start()
     {
@@ -96,8 +96,9 @@ public class BrickSpawnScript : MonoBehaviour
         bricksLeft --;
 
         if (bricksLeft <= 0)
-        {
+        {   
             ResetBricks();
+            ballScript.ResetBall();
         }
     }
 }

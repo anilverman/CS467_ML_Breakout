@@ -7,6 +7,10 @@ public class LeaderboardUIScript : MonoBehaviour
     private UIDocument uiDocument;
     private Button backButton;
     public AudioClip click;
+
+    /// <summary>
+    /// Initializes the leaderboard and propagates the initials scores and times into it.
+    /// </summary>
     void Start()
     {
         UIDocument ui = GetComponent<UIDocument>();
@@ -17,7 +21,8 @@ public class LeaderboardUIScript : MonoBehaviour
             Label label = root.Q<Label>("Score" + (i + 1));
             int score = PlayerPrefs.GetInt("HighScore" + i, 0);
             float time = PlayerPrefs.GetFloat("HighScoreTime" + i, 0);
-            label.text = $"{i + 1}. {score} - {time:F2}s";
+            string initials = PlayerPrefs.GetString("HighScoreInitials" + i, "---");
+            label.text = $"{i + 1}. {initials}:   {score} - {time:F2}s";
         }
     }
     void OnEnable()
