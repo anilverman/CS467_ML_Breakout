@@ -405,8 +405,6 @@ MonoBehaviour:
   moveSpeed: 15
   minX: -15
   maxX: 15
-  brickScript: {fileID: 55554624}
-  rewardScript: {fileID: 1806906303}
 --- !u!114 &184664034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,6 +787,7 @@ GameObject:
   - component: {fileID: 609383188}
   - component: {fileID: 609383187}
   - component: {fileID: 609383189}
+  - component: {fileID: 609383190}
   m_Layer: 0
   m_Name: GameUI
   m_TagString: Untagged
@@ -849,6 +848,20 @@ MonoBehaviour:
   uiDocument: {fileID: 609383187}
   lives: 3
   ballScript: {fileID: 0}
+--- !u!114 &609383190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609383186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1518631e7354450a8f6f1091ffbd286, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ComboUIScript
+  uiDocument: {fileID: 609383187}
+  ComboDisplayTime: 3
 --- !u!1 &779309118
 GameObject:
   m_ObjectHideFlags: 0
