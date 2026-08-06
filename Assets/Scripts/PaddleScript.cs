@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 public class PaddleScript : MonoBehaviour
 {
     public float speed = 10f;
+    // Making the Input keys editable in Unity for better splitscreen functionality
+    public Key leftKey = Key.LeftArrow;
+    public Key rightKey = Key.RightArrow;
     Rigidbody2D rb;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,13 +25,13 @@ public class PaddleScript : MonoBehaviour
     {
         Vector2 movement = Vector2.zero;
 
-        if (Keyboard.current.leftArrowKey.isPressed)
+        if (Keyboard.current[leftKey].isPressed)
         {
             movement = Vector2.left;
             Debug.Log("Pressing left by " + movement);
         }
 
-        if (Keyboard.current.rightArrowKey.isPressed)
+        if (Keyboard.current[rightKey].isPressed)
         {
             movement = Vector2.right;
             Debug.Log("Pressing right by " + movement);
@@ -37,4 +40,3 @@ public class PaddleScript : MonoBehaviour
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 }
-

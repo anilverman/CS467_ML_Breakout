@@ -8,6 +8,7 @@ public class ModeScript : MonoBehaviour
     private Button startButton;
     private Button trainingButton;
     private Button splitscreenButton;
+    private Button humansButton;
     private Button backButton;
     public AudioClip click;
     void OnEnable()
@@ -21,11 +22,13 @@ public class ModeScript : MonoBehaviour
         startButton = uiDocument.rootVisualElement.Q<Button>("1Player");
         trainingButton = uiDocument.rootVisualElement.Q<Button>("Training");
         splitscreenButton = uiDocument.rootVisualElement.Q<Button>("Vs");
+        humansButton = uiDocument.rootVisualElement.Q<Button>("HvH");
         backButton = uiDocument.rootVisualElement.Q<Button>("Back");
 
         startButton.clicked += StartGame;
         trainingButton.clicked += Training;
         splitscreenButton.clicked += Splitscreen;
+        humansButton.clicked += HumanVsHuman;
         backButton.clicked += Back;
 
     }
@@ -38,6 +41,10 @@ public class ModeScript : MonoBehaviour
     
     void LoadStart()
     {
+        // Set the last scene as the main single player game
+        PlayerPrefs.SetString("LastScene", "Game");
+        // Removes the set winner if the player goes from a splitscreen mode and back to a single player mode so that the eventual Game Over screen is accurate
+        PlayerPrefs.DeleteKey("Winner");
         SceneManager.LoadScene("Game");
     }
 
@@ -49,6 +56,10 @@ public class ModeScript : MonoBehaviour
 
     void LoadTraining()
     {
+        // Set the last scene as the ML Training mode
+        PlayerPrefs.SetString("LastScene", "Game_Training");
+        // Removes the set winner if the player goes from a splitscreen mode and back to a single player mode so that the eventual Game Over screen is accurate
+        PlayerPrefs.DeleteKey("Winner");
         SceneManager.LoadScene("Game_Training");
     }
 
@@ -60,7 +71,21 @@ public class ModeScript : MonoBehaviour
 
     void LoadSplitscreen()
     {
+        // Set the last scene as the Human vs AI Splitscreen Mode (Will likely need to be changed to point to specific difficulty scenes when those are implemented)
+        PlayerPrefs.SetString("LastScene", "Game_Splitscreen");
         SceneManager.LoadScene("Difficulty_Selection");
+    }
+
+    void HumanVsHuman()
+    {
+        PlayClick();
+        Invoke("LoadHumanVsHuman", 0.025f);
+    }
+
+    void LoadHumanVsHuman()
+    {
+        PlayerPrefs.SetString("LastScene", "Game_Splitscreen_HvH");
+        SceneManager.LoadScene("Game_Splitscreen_HvH");
     }
 
     void Back()

@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class ScoreScript : MonoBehaviour
 {
     [SerializeField] private UIDocument uiDocument;
+    [SerializeField] private bool isSplitscreen = false;
     private Label scoreText;
     private int score = 0;
     private Label livesText;
@@ -16,6 +17,11 @@ public class ScoreScript : MonoBehaviour
     private float timer = 0f;
     private bool timeOn = true;
     [SerializeField] private BallScript ballScript;
+    // Making the score readable so a winner can be determined in splitscreen modes
+    public int finalScore
+    {
+        get { return score; }
+    }
 
 
     /// <summary>
@@ -93,7 +99,12 @@ public class ScoreScript : MonoBehaviour
             ballScript.StopBall();
             gameObject.SetActive(false);
 
-            SceneManager.LoadScene("GameOver");
+            // If the game is not on one of the splitscreen modes, end the game when all lives are lost
+            if (!isSplitscreen)
+            {
+                SceneManager.LoadScene("GameOver");
+            }
+
         }    
         }
     /// <summary>
