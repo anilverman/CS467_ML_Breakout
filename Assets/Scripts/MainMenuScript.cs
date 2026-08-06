@@ -68,6 +68,6 @@ public class MainMenuScript : MonoBehaviour
 
     void PlayClick()
     {
-        AudioSource.PlayClipAtPoint(click, transform.position);  
+        AudioSource.PlayClipAtPoint(click, transform.position); 
     }
 }
