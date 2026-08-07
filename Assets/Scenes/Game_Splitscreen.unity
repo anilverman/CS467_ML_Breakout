@@ -2997,6 +2997,9 @@ MonoBehaviour:
   moveSpeed: 22
   minX: 12
   maxX: 42
+  beginnerModel: {fileID: 5022602860645237092, guid: 383f2c4105f4d41658d30d931556bd9f, type: 3}
+  mediumModel: {fileID: 5022602860645237092, guid: d40e8d7aafd194c1e994e04872d6fb61, type: 3}
+  challengingModel: {fileID: 5022602860645237092, guid: 0d5514f5557c04a8d942cd4e45c713c1, type: 3}
 --- !u!60 &1999241564
 PolygonCollider2D:
   m_ObjectHideFlags: 0

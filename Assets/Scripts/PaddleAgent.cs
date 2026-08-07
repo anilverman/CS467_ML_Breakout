@@ -3,6 +3,9 @@ using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
 using UnityEngine.InputSystem;
+using Unity.MLAgents.Policies;
+using Unity.InferenceEngine;
+
 
 public class PaddleAgent : Agent
 {
@@ -21,6 +24,11 @@ public class PaddleAgent : Agent
     private BrickSpawnScript brickScript;
     private RewardScript rewardScript;
 
+    [SerializeField] private ModelAsset beginnerModel;
+    [SerializeField] private ModelAsset mediumModel;
+    [SerializeField] private ModelAsset challengingModel;
+    private BehaviorParameters behaviorParameters; 
+
     public override void Initialize()
     {
         paddleRigidbody = GetComponent<Rigidbody2D>();
@@ -29,6 +37,24 @@ public class PaddleAgent : Agent
         ballScript = ball.GetComponent<BallScript>();
         brickScript = FindObjectOfType<BrickSpawnScript>();
         rewardScript = FindFirstObjectByType<RewardScript>();
+
+        behaviorParameters = GetComponent<BehaviorParameters>();
+        // Debug.Log("Difficulty is: " + GameSettings.GameDifficulty);
+
+        if (GameSettings.GameDifficulty == "Beginner")
+        {
+            behaviorParameters.Model = beginnerModel;
+        }
+
+        else if (GameSettings.GameDifficulty == "Medium")
+        {
+            behaviorParameters.Model = mediumModel;
+        }
+
+        else
+        {
+            behaviorParameters.Model = challengingModel;
+        }
     }
 
     public override void OnEpisodeBegin()
