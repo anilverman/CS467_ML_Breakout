@@ -8,6 +8,7 @@ public class GameOverScript : MonoBehaviour
     private Button restartButton;
     private Button mainMenuButton;
     private TextField initialsField;
+    private Label gameOver;
     public AudioClip click;
     void OnEnable()
     {
@@ -19,6 +20,25 @@ public class GameOverScript : MonoBehaviour
         restartButton = uiDocument.rootVisualElement.Q<Button>("Restart");
         mainMenuButton = uiDocument.rootVisualElement.Q<Button>("MainMenu");
         initialsField = uiDocument.rootVisualElement.Q<TextField>("Initials");
+        gameOver = uiDocument.rootVisualElement.Q<Label>("GameOver");
+
+        // Change the text on the Game Over Screen based on who won the game
+        int winner = PlayerPrefs.GetInt("Winner", -1);
+        switch (winner)
+        {
+            case 1:
+                gameOver.text = "Player 1 Wins!";
+                break;
+            case 2:
+                gameOver.text = "Player 2 Wins!";
+                break;
+            case 0:
+                gameOver.text = "Draw!";
+                break;
+            default:
+                gameOver.text = "Game Over!";
+                break;
+        }
 
         restartButton.SetEnabled(false);
         mainMenuButton.SetEnabled(false);
@@ -67,7 +87,8 @@ public class GameOverScript : MonoBehaviour
     }
     void LoadRestart()
     {
-        SceneManager.LoadScene("Game");
+        string lastGameMode = PlayerPrefs.GetString("LastScene");
+        SceneManager.LoadScene(lastGameMode);
     }
     void MainMenu()
     {
