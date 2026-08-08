@@ -22,6 +22,7 @@ public class BallScript : MonoBehaviour
     [SerializeField] private ScoreScript scoreScript;
     private PaddleAgent paddleAgent;
     private RewardScript rewardScript;
+    private BallTrailScript ballTrailScript;
     public AudioClip paddleHit;
     private bool playerLost = false;
 
@@ -32,6 +33,8 @@ public class BallScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         paddleAgent = FindFirstObjectByType<PaddleAgent>();
         rewardScript = FindFirstObjectByType<RewardScript>();
+        ballTrailScript = GetComponent<BallTrailScript>();
+        ballTrailScript?.DisableTrail();
         // Random spawn position
         float randomX = Random.Range(minSpawnX, maxSpawnX);
         rb.position = new Vector2(randomX, spawnY);
@@ -52,8 +55,8 @@ public class BallScript : MonoBehaviour
         {
             if (paddleAgent != null)
             {
-                scoreScript.LoseLife();
-                
+                // scoreScript.LoseLife();
+
                 // Training scene:
                 // punish the agent and let OnEpisodeBegin reset the ball.
                 paddleAgent.HandleBallOutOfBounds();
@@ -64,6 +67,7 @@ public class BallScript : MonoBehaviour
                 scoreScript.LoseLife();
 
                 // Random respawn position
+                ballTrailScript?.DisableTrail();
                 float randomX = Random.Range(minSpawnX, maxSpawnX);
                 rb.position = new Vector2(randomX, spawnY);
 
@@ -74,15 +78,16 @@ public class BallScript : MonoBehaviour
 
         if (other.CompareTag("Human_OutOfBounds"))
         {
-                // Normal game scene:
-                scoreScript.LoseLife();
+            // Normal game scene:
+            scoreScript.LoseLife();
 
-                // Random respawn position
-                float randomX = Random.Range(minSpawnX, maxSpawnX);
-                rb.position = new Vector2(randomX, spawnY);
+            // Random respawn position
+            ballTrailScript?.DisableTrail();
+            float randomX = Random.Range(minSpawnX, maxSpawnX);
+            rb.position = new Vector2(randomX, spawnY);
 
-                Debug.Log("Respawn Position: " + rb.position);
-                StartCoroutine(DelayedLaunchBall());
+            Debug.Log("Respawn Position: " + rb.position);
+            StartCoroutine(DelayedLaunchBall());
         }
     }
     /*
@@ -140,6 +145,8 @@ public class BallScript : MonoBehaviour
         Debug.Log("Delaying ball launch...");
         rb.linearVelocity = Vector2.zero;
         yield return new WaitForSeconds(launchDelay);
+        ballTrailScript?.ClearTrail();
+        ballTrailScript?.EnableTrail();
         Debug.Log("Launching ball");
         LaunchBall();
     }
@@ -196,6 +203,7 @@ public class BallScript : MonoBehaviour
     {
         StopAllCoroutines();
 
+        ballTrailScript?.DisableTrail();
         float randomX = Random.Range(minSpawnX, maxSpawnX);
         rb.position = new Vector2(randomX, spawnY);
         rb.linearVelocity = Vector2.zero;
