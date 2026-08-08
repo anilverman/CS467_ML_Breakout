@@ -49,6 +49,7 @@ public class DifficultySelectionScript : MonoBehaviour
     void Beginner()
     {
         PlayClick();
+        GameSettings.GameDifficulty = "Beginner";
         Invoke("LoadGame", 0.025f);
     }
 
@@ -56,6 +57,7 @@ public class DifficultySelectionScript : MonoBehaviour
     void Medium()
     {
         PlayClick();
+        GameSettings.GameDifficulty = "Medium";
         Invoke("LoadGame", 0.025f);
     }
 
@@ -63,6 +65,7 @@ public class DifficultySelectionScript : MonoBehaviour
     void Challenging()
     {
         PlayClick();
+        GameSettings.GameDifficulty = "Challenging";
         Invoke("LoadGame", 0.025f);
     }
 
