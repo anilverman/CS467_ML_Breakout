@@ -40,6 +40,7 @@ public class BrickSpawnScript : MonoBehaviour
         yield return null;
 
         SpawnBricks();
+        // Comment this out when training.
         ballScript.speed ++;
         Debug.Log(ballScript.speed);
     }
