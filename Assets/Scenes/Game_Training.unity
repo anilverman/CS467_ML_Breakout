@@ -163,9 +163,9 @@ MonoBehaviour:
   - {r: 0.7058824, g: 0.78047156, b: 0.80784315, a: 1}
   - {r: 0.8117647, g: 0.8345617, b: 0.9137255, a: 1}
   - {r: 0.6857713, g: 0.6239765, b: 0.7735849, a: 1}
-  ballScript: {fileID: 1157833922}
   scoreScript: {fileID: 280367737}
   rewardScript: {fileID: 1806906303}
+  ballScript: {fileID: 1157833922}
 --- !u!4 &55554625
 Transform:
   m_ObjectHideFlags: 0
@@ -331,6 +331,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaddleScript
   speed: 15
+  leftKey: 61
+  rightKey: 62
 --- !u!60 &184664032
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -405,6 +407,9 @@ MonoBehaviour:
   moveSpeed: 15
   minX: -15
   maxX: 15
+  beginnerModel: {fileID: 5022602860645237092, guid: 383f2c4105f4d41658d30d931556bd9f, type: 3}
+  mediumModel: {fileID: 5022602860645237092, guid: d40e8d7aafd194c1e994e04872d6fb61, type: 3}
+  challengingModel: {fileID: 5022602860645237092, guid: 0d5514f5557c04a8d942cd4e45c713c1, type: 3}
 --- !u!114 &184664034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -620,6 +625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreScript
   uiDocument: {fileID: 609383187}
+  isSplitscreen: 0
   lives: 3
   ballScript: {fileID: 1157833922}
 --- !u!4 &280367738
@@ -846,6 +852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreScript
   uiDocument: {fileID: 609383187}
+  isSplitscreen: 0
   lives: 3
   ballScript: {fileID: 0}
 --- !u!114 &609383190
@@ -1122,6 +1129,21 @@ MonoBehaviour:
   spawnY: 0
   scoreScript: {fileID: 280367737}
   paddleHit: {fileID: 8300000, guid: af222c212b611ab48bcbf0a235ccb331, type: 3}
+--- !u!114 &1157833923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157833916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6121374ae07348bab7c5a0c08b971393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BallTrailScript
+  trailDuration: 0.2
+  trailWidth: 0.4
+  trailColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!1 &1302121881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1594,15 +1616,3 @@ SceneRoots:
   - {fileID: 55554625}
   - {fileID: 779309120}
   - {fileID: 1806906304}
---- !u!114 &1157833923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1157833916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6121374ae07348bab7c5a0c08b971393, type: 3}
-  m_Name:
-  m_EditorClassIdentifier: Assembly-CSharp::BallTrailScript
