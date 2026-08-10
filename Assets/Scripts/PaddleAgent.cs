@@ -21,13 +21,14 @@ public class PaddleAgent : Agent
     private Rigidbody2D paddleRigidbody;
     private Vector3 paddleStartPosition;
     private BallScript ballScript;
-    private BrickSpawnScript brickScript;
+    [SerializeField] private BrickSpawnScript brickScript;
     private RewardScript rewardScript;
 
     [SerializeField] private ModelAsset beginnerModel;
     [SerializeField] private ModelAsset mediumModel;
     [SerializeField] private ModelAsset challengingModel;
     private BehaviorParameters behaviorParameters; 
+    [SerializeField] private bool isSplitscreen = true;
 
     public override void Initialize()
     {
@@ -35,7 +36,6 @@ public class PaddleAgent : Agent
         paddleStartPosition = transform.position;
 
         ballScript = ball.GetComponent<BallScript>();
-        brickScript = FindObjectOfType<BrickSpawnScript>();
         rewardScript = FindFirstObjectByType<RewardScript>();
 
         behaviorParameters = GetComponent<BehaviorParameters>();
@@ -70,7 +70,12 @@ public class PaddleAgent : Agent
 
         // reset the ball and respawn bricks when a new episode begins
         ballScript.ResetBall();
-        brickScript.ResetBricks();
+
+        if (isSplitscreen)
+        {
+            brickScript.ResetBricks();
+        }
+
     }
 
     public override void CollectObservations(VectorSensor sensor)

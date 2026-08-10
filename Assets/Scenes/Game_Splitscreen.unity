@@ -1414,6 +1414,21 @@ MonoBehaviour:
   spawnY: 0
   scoreScript: {fileID: 1787229271}
   paddleHit: {fileID: 8300000, guid: f0d48b690c250e44c98127f948d06dde, type: 3}
+--- !u!114 &1157833923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157833916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6121374ae07348bab7c5a0c08b971393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BallTrailScript
+  trailDuration: 0.2
+  trailWidth: 0.4
+  trailColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!1 &1281144761
 GameObject:
   m_ObjectHideFlags: 0
@@ -1907,6 +1922,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &1587821586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587821580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6121374ae07348bab7c5a0c08b971393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BallTrailScript
+  trailDuration: 0.2
+  trailWidth: 0.4
+  trailColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!1 &1596682043
 GameObject:
   m_ObjectHideFlags: 0
@@ -2999,9 +3029,11 @@ MonoBehaviour:
   moveSpeed: 22
   minX: 12
   maxX: 42
+  brickScript: {fileID: 1875602302}
   beginnerModel: {fileID: 5022602860645237092, guid: 383f2c4105f4d41658d30d931556bd9f, type: 3}
   mediumModel: {fileID: 5022602860645237092, guid: d40e8d7aafd194c1e994e04872d6fb61, type: 3}
   challengingModel: {fileID: 5022602860645237092, guid: 0d5514f5557c04a8d942cd4e45c713c1, type: 3}
+  isSplitscreen: 0
 --- !u!60 &1999241564
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3307,27 +3339,3 @@ SceneRoots:
   - {fileID: 1749665384}
   - {fileID: 1039136911}
   - {fileID: 623315840}
---- !u!114 &1157833923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1157833916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6121374ae07348bab7c5a0c08b971393, type: 3}
-  m_Name:
-  m_EditorClassIdentifier: Assembly-CSharp::BallTrailScript
---- !u!114 &1587821586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1587821580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6121374ae07348bab7c5a0c08b971393, type: 3}
-  m_Name:
-  m_EditorClassIdentifier: Assembly-CSharp::BallTrailScript

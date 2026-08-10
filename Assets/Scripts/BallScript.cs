@@ -201,6 +201,7 @@ public class BallScript : MonoBehaviour
 
     public void ResetBall()
     {
+        playerLost = false;
         StopAllCoroutines();
 
         ballTrailScript?.DisableTrail();
